@@ -1,0 +1,10 @@
+app:
+  name: "占位符"
+  # 引用配置文件中的配置属性
+  description: "${app.name}应用演示了如何在配置文件中使用占位符"
+book:
+  # 引用外部的配置属性
+  description: ${book.name}是一本非常优秀的图书
+server:
+  # 配置服务端口
+  port: ${port}

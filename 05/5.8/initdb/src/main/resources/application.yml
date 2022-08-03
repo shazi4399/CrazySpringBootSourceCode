@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    # 支持never、always、embedded（默认值）三个值
+    initialization-mode: always
+    # 指定初始化数据库时遇到错误是否继续
+    continue-on-error: false
+  # 指定活动Profile
+  profiles:
+    active: postgre
+---
+spring:
+  config:
+    activate.on-profile: mysql
+  datasource:
+    platform: mysql
+    url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC
+    username: root
+    password: 32147
+---
+spring:
+  config:
+    activate.on-profile: postgre
+  datasource:
+    platform: postgre
+    url: jdbc:postgresql://localhost:5432/springboot
+    username: postgres
+    password: 32147

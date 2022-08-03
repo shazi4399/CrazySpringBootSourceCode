@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)"/>
+	<meta charset="UTF-8">
+	<title>商品列表</title>
+	<!-- jQuery -->
+	<script type="text/javascript" th:src="@{/jquery/jquery.min.js}"></script>
+	<!-- BootStrap -->
+	<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+	<div class="card">
+		<div class="card-header"><h4>秒杀商品列表</h4></div>
+		<div class="card-body">
+			<table class="table table-hover" id="itemList">
+				<tr>
+					<td>商品名称</td>
+					<td>商品图片</td>
+					<td>商品原价</td>
+					<td>秒杀价</td>
+					<td>库存数量</td>
+					<td>详情</td>
+				</tr>
+				<tr th:each="item, itemStat : ${itemList}">
+					<td th:text="${item.itemName}"></td>
+					<td>
+						<img th:src="@{'/imgs/'+ ${item.itemImg}}"
+							 width="80" height="100"/>
+					</td>
+					<td th:text="${item.itemPrice}"></td>
+					<td th:text="${item.miaoshaPrice}"></td>
+					<td th:text="${item.stockCount}"></td>
+					<td>
+						<a th:href="'/item/item_detail.html?itemId='
+							+ ${item.itemId}">秒杀</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

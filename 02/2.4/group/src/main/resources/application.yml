@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    # 定义Profile组，该组还包括banner和server两个Profile
+    group:
+      prod:
+        - banner
+        - server
+    # 将prod设为活动Profile
+    active: prod

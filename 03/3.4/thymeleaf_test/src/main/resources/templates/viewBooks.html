@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>查看图书</title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+	<table class="table table-hover">
+		<tr>
+			<th>序号</th>
+			<th>书名</th>
+			<th>作者</th>
+			<th>价格</th>
+			<th>封面</th>
+		</tr>
+		<tr th:each="book, bookStat : ${bookList}">
+			<td th:text="${bookStat.index} + 1">序号</td>
+			<td th:text="${book.title}">书名</td>
+			<td th:text="${book.author}">作者</td>
+			<td th:text="${book.price}">价格</td>
+			<td><img alt="封面" src="images/java.jpg" th:src="@{'images/'+${book.cover}}"
+					 width="70" height="100"></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

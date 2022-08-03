@@ -1,0 +1,6 @@
+fkjava:
+  name: "疯狂软件"
+  age: 25
+  servers:
+    - www.fkjava.org
+    - www.crazyit.org

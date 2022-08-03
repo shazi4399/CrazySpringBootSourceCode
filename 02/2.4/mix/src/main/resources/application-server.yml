@@ -1,0 +1,8 @@
+crazyit:
+  list:
+    - title: 疯狂Spring Boot终极讲义
+      description: “此书一出再无书”的Spring Boot
+  map:
+    server:
+      title: 服务器级
+      description: 服务器级

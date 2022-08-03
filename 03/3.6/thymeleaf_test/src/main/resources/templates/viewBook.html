@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>查看图书</title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+	<h2 th:text="${book.title}">书名</h2>
+	<div th:text="${book.author}">作者</div>
+	<div th:text="${book.price}" class="text-primary">价格</div>
+	<div><img alt="封面" src="images/java.jpg" th:src="@{'/images/'+${book.cover}}"></div>
+</div>
+</body>
+</html>

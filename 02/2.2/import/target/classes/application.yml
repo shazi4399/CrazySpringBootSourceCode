@@ -1,0 +1,7 @@
+fkjava:
+  server:
+    name: "疯狂软件服务器"
+    port: 9000
+spring:
+  config:
+    import: optional:classpath:/fk/fk.yml

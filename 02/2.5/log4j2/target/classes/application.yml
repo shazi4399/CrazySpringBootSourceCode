@@ -1,0 +1,4 @@
+logging:
+  level:
+    # 将org.crazyit.app包及其子包下所有日志级别设为TRACE
+    org.crazyit.app: trace

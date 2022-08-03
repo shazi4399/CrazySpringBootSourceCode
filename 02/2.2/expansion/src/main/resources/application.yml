@@ -1,0 +1,7 @@
+app:
+  java:
+    # 引用pom.xml文件中的属性
+    version: @java.version@
+  sourceEncoding: @project.build.sourceEncoding@
+  name: @name@
+  version: @version@

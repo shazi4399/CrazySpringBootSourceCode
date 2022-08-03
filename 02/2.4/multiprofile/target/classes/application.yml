@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    username: root
+    password: 32147
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  datasource:
+    # 指定连接deft数据库
+    url: jdbc:mysql://localhost:3306/deft?serverTimezone=UTC
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    # 指定连接dev数据库
+    url: jdbc:mysql://localhost:3306/dev?serverTimezone=UTC
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    # 指定连接prod数据库
+    url: jdbc:mysql://localhost:3306/prod?serverTimezone=UTC
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    # 指定连接test数据库
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC

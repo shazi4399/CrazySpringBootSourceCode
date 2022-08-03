@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)"/>
+	<meta charset="UTF-8">
+	<title>商品详情</title>
+	<!-- jQuery -->
+	<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+	<!-- BootStrap -->
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"/>
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Layer -->
+	<script type="text/javascript" src="/layer/layer.js"></script>
+	<!-- 自定义的common.js -->
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script>
+		// 页面加载完成时执行，获取商品情形
+		$(function () {
+			// 获取itemId查询参数
+			let itemId = g_getQueryString("itemId");
+			// 发送异步请求获取秒杀商品详情
+			$.get("/item/detail/" + itemId, function (data) {
+				if (data.code == 0) {
+					render(data.data);
+				} else {
+					layer.msg(data.msg);
+				}
+			});
+		});
+		// 根据服务器响应的数据动态更新页面内容
+		function render(detail) {
+			// 获取秒杀物品的信息
+			let item = detail.miaoshaItem;
+			let user = detail.user;
+			if (user) {
+				$("#userTip").hide();
+			}
+			// 动态更新页面
+			$("#itemName").text(item.itemName);
+			$("#title").text(item.title);
+			$("#itemImg").attr("src", "/imgs/" + item.itemImg);
+			$("#startTime").text(new Date(item.startDate).format("yyyy-MM-dd hh:mm:ss"));
+			$("#remainSeconds").val(detail.remainSeconds);
+			$("#leftSeconds").val(detail.leftSeconds);
+			$("#itemId").val(item.itemId);
+			$("#itemPrice").text(item.itemPrice);
+			$("#miaoshaPrice").text(item.miaoshaPrice);
+			$("#itemDetail").html(item.itemDetail);
+			$("#stockCount").text(item.stockCount);
+			// 开启倒计时
+			countDown();
+		}
+		// 定义倒计时的函数
+		function countDown() {
+			// 获取秒杀开始的剩余时间
+			let remainSeconds = $("#remainSeconds").val();
+			// 获取秒杀结束的剩余时间
+			let leftSeconds = $("#leftSeconds").val();
+			// 秒杀还没开始
+			if (remainSeconds > 0) {
+				// 禁用秒杀按钮
+				$("#buyButton").attr("disabled", true);
+				// 显示倒计时
+				$("#miaoshaTip").html("秒杀还未开始，倒计时：" + g_secs2hour(remainSeconds));
+				// 将倒计时减1秒
+				$("#remainSeconds").val(remainSeconds - 1);
+				$("#leftSeconds").val(leftSeconds - 1)
+				// 设置1秒后再次调用countDown()函数
+				setTimeout(countDown, 1000);
+			}
+			// 秒杀进行中
+			else if (remainSeconds == 0) {
+				// 显示倒计时
+				$("#miaoshaTip").html("秒杀进行中，剩余时间：" + g_secs2hour(leftSeconds));
+				// 将倒计时减1秒
+				$("#leftSeconds").val(leftSeconds - 1)
+				if (leftSeconds - 1 <= 0)
+				{
+					// 将remainSeconds设为-1，表明秒杀结束
+					$("#remainSeconds").val(-1);
+				}
+				// 设置1秒后再次调用countDown()函数
+				setTimeout(countDown, 1000);
+				if ($("#buyButton").attr("disabled")){
+					// 启用秒杀按钮
+					$("#buyButton").attr("disabled", false);
+				}
+				if ($("#verifyCodeImg").is(":hidden")) {
+					// 显示验证码图片
+					$("#verifyCodeImg").attr("src", "/miaosha/verifyCode?itemId="
+						+ $("#itemId").val()  + "&timestamp=" + new Date().getTime());
+					$("#verifyCodeImg").show();
+				}
+				if ($("#verifyCode").is(":hidden"))
+				{
+					// 显示验证码输入框
+					$("#verifyCode").show();
+				}
+			}
+			// 秒杀已经结束
+			else {
+				// 禁用秒杀按钮
+				$("#buyButton").attr("disabled", true);
+				$("#miaoshaTip").html("秒杀已结束");
+				// 隐藏验证码图片
+				$("#verifyCodeImg").hide();
+				// 隐藏验证码输入框
+				$("#verifyCode").hide();
+			}
+		}
+		// 定义获取秒杀地址的函数
+		// 秒杀系统需要隐藏商品的秒杀地址，因此需要为每个商品动态生成秒杀地址
+		function getMiaoshaPath() {
+			g_showLoading();
+			let itemId = $("#itemId").val();
+			$.get("/miaosha/path", {
+				itemId: itemId,
+				verifyCode: $("#verifyCode").val()
+			}, function (data) {
+				if (data.code == 0) {
+					let path = data.data;
+					// 执行秒杀
+					proMiaosha(path);
+				} else {
+					layer.msg(data.msg);
+				}
+			});
+		}
+		// 提交秒杀请求执行秒杀
+		function proMiaosha(path) {
+			// 发送秒杀请求
+			$.post("/miaosha/" + path + "/proMiaosha", {
+				itemId: $("#itemId").val()
+			}, function (data) {
+				// 当秒杀完成（只是将秒杀请求添加的RabbitMQ队列中）后
+				if (data.code == 0) {
+					// 调用getMiaoshaResult()函数获取秒杀结果
+					getMiaoshaResult($("#itemId").val());
+				} else {
+					layer.msg(data.msg);
+				}
+			});
+		}
+		// 获取秒杀结果
+		function getMiaoshaResult(itemId) {
+			$.get("/miaosha/result", {
+				itemId: $("#itemId").val()
+			}, function (data) {
+				if (data.code == 0) {
+					let result = data.data;
+					// 如果秒杀失败
+					if (result < 0) {
+						layer.msg("对不起，秒杀失败");
+					// 秒杀还未完成，0.1秒之后再次请求
+					} else if (result == 0) {
+						// 0.1之后再次请求
+						setTimeout(function () {
+							getMiaoshaResult(itemId);
+						}, 100);
+					// 秒杀成功
+					} else {
+						// 弹出确认框
+						layer.confirm("恭喜你，秒杀成功！查看订单？", {btn: ["确定", "取消"]},
+							function () {
+								// 调到订单详情页面
+								window.location.href = "/order/order_detail.html?orderId=" + result;
+							}),
+							function () {
+								layer.closeAll();
+							};
+					}
+				} else {
+					layer.msg(data.msg);
+				}
+			});
+		}
+		// 刷新验证码的函数
+		function refreshVerifyCode() {
+			$("#verifyCodeImg").attr("src", "/miaosha/verifyCode?itemId="
+				+ $("#itemId").val() + "&timestamp=" + new Date().getTime());
+		}
+	</script>
+</head>
+<body>
+<div class="container">
+	<img src="/imgs/logo.png"
+		 class="rounded mx-auto d-block" alt="logo"><h4>秒杀商品详情</h4>
+	<div class="row">
+		<div class="col-lg-3"><img id="itemImg" width="240" height="340"></div>
+		<div class="col-lg-9 p-3">
+			<div class="row py-1 pl-5">
+				<div class="col-lg"><h3 id="itemName"></h3></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg font-weight-bold text-danger" id="title"></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg">原价:<span class="col-lg" id="itemPrice"></span></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg">秒杀价:<span class="col-lg text-danger"
+											  id="miaoshaPrice"></span></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg">库存数量:<span class="col-lg"
+											   id="stockCount"></span></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg">开始时间:<span class="col-lg"
+											   id="startTime"></span></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg">
+					<input type="hidden" id="remainSeconds"/>
+					<input type="hidden" id="leftSeconds"/>
+					<span id="miaoshaTip" style="color:red;font-weight: bolder"></span>
+				</div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg" id="itemDetail"></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg">
+			<div class="form-inline justify-content-center">
+				<img id="verifyCodeImg" width="80" height="32" style="display:none"
+					 onclick="refreshVerifyCode()"/>
+				<input id="verifyCode" class="form-control" style="display:none"
+					   placeholder="请输入验证码"/>
+				<button class="btn btn-primary" type="button" id="buyButton"
+						onclick="getMiaoshaPath()">立即秒杀
+				</button>
+				<input type="hidden" name="itemId" id="itemId"/>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

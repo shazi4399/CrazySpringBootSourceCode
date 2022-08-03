@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "org.crazyit.funny",
+      "type": "org.crazyit.funny.autoconfigure.FunnyProperties",
+      "sourceType": "org.crazyit.funny.autoconfigure.FunnyProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "org.crazyit.funny.charset",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.funny.autoconfigure.FunnyProperties"
+    },
+    {
+      "name": "org.crazyit.funny.dest",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.funny.autoconfigure.FunnyProperties"
+    }
+  ],
+  "hints": []
+}

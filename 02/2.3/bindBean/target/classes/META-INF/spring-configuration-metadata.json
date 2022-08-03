@@ -1,0 +1,53 @@
+{
+  "groups": [
+    {
+      "name": "fkjava.book",
+      "type": "org.crazyit.app.domain.Book",
+      "sourceType": "org.crazyit.app.MyConfig",
+      "sourceMethod": "book()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "fkjava.book.author",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.app.domain.Book"
+    },
+    {
+      "name": "fkjava.book.keywords",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "org.crazyit.app.domain.Book"
+    },
+    {
+      "name": "fkjava.book.price",
+      "type": "java.lang.Double",
+      "sourceType": "org.crazyit.app.domain.Book"
+    },
+    {
+      "name": "fkjava.book.title",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.app.domain.Book"
+    },
+    {
+      "name": "org.fkjava.author",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.app.domain.Book"
+    },
+    {
+      "name": "org.fkjava.keywords",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "org.crazyit.app.domain.Book"
+    },
+    {
+      "name": "org.fkjava.price",
+      "type": "java.lang.Double",
+      "sourceType": "org.crazyit.app.domain.Book"
+    },
+    {
+      "name": "org.fkjava.title",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.app.domain.Book"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,9 @@
+logging:
+  level:
+    # 将org.crazyit.app包及其子包下所有日志级别设为TRACE
+    org.crazyit.app: trace
+  file:
+    # 指定日志文件的输出目录，默认文件名为spring.log
+#    path: logs/
+    # 指定日志文件
+    name: my.log

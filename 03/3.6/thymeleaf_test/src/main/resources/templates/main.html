@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>登录成功</title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+	<img th:src="@{/logo.png}" class="rounded mx-auto d-block"><h4>登录成功</h4>
+	欢迎您， <span th:text="${session.name}">用户名</span>，登录成功 <br>
+	您的角色是： <span th:switch="${session.role}">
+		<span th:case="'admin'">系统管理员</span>
+		<span th:case="'manager'">经理</span>
+		<span th:case="*">普通员工</span>
+	</span>
+	<div><a th:each="id: ${ids}" th:href="@{'/viewBook/' + ${id}}">
+		查看图书<span th:text="${id}"></span></a></div>
+</div>
+</body>
+</html>

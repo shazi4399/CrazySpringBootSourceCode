@@ -1,0 +1,32 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+// 定义项目的基本信息
+group = 'org.crazyit'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+// 定义Gradle资源库
+repositories {
+    // 优先使用Maven本地资源库
+    mavenLocal()
+    mavenCentral()
+}
+dependencies {
+    // Spring Web依赖
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Spring Boot Thymeleaf依赖
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // Bootstrap WarJar的依赖
+    implementation 'org.webjars:bootstrap:4.5.3'
+    //  Spring Boot Data JPA依赖
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // MySQL驱动依赖
+    implementation 'mysql:mysql-connector-java'
+    // Spring Boot单元测试的依赖
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+test {
+    useJUnitPlatform()
+}

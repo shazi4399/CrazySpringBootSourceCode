@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "org.crazyit",
+      "type": "org.crazyit.app.config.CrazyitProperties",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "org.crazyit.last-time",
+      "type": "java.time.Duration",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    },
+    {
+      "name": "org.crazyit.max-size",
+      "type": "org.springframework.util.unit.DataSize",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    },
+    {
+      "name": "org.crazyit.run-period",
+      "type": "java.time.Period",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    },
+    {
+      "name": "org.crazyit.timeout",
+      "type": "java.time.Duration",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,3 @@
+org\crazyit\funny\autoconfigure\FunnyProperties.class
+org\crazyit\funny\autoconfigure\FunnyAutoConfiguration.class
+META-INF\spring-configuration-metadata.json

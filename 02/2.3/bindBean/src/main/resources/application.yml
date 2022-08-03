@@ -1,0 +1,9 @@
+fkjava:
+  book:
+    title: "疯狂Spring Boot终极讲义"
+    price: 128
+    author: "李刚"
+    keywords:
+      - Java
+      - Spring
+      - 疯狂

@@ -1,0 +1,43 @@
+{
+  "groups": [
+    {
+      "name": "org.crazyit",
+      "type": "org.crazyit.app.config.CrazyitProperties",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    },
+    {
+      "name": "org.crazyit.item",
+      "type": "org.crazyit.app.config.CrazyitProperties$Item",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties",
+      "sourceMethod": "getItem()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "org.crazyit.item.brand",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties$Item"
+    },
+    {
+      "name": "org.crazyit.item.comments",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties$Item"
+    },
+    {
+      "name": "org.crazyit.mobile",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    },
+    {
+      "name": "org.crazyit.name",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    },
+    {
+      "name": "org.crazyit.price",
+      "type": "java.lang.Double",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    }
+  ],
+  "hints": []
+}

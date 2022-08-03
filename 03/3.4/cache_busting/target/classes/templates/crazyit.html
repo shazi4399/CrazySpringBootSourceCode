@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>静态资源的缓存清除</title>
+    <!-- 资源地址必须以/开头，这是为了与application.properties中配置能匹配 -->
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.1.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+<h2 class="text-primary">静态资源的缓存清除</h2>
+</body>
+</html>

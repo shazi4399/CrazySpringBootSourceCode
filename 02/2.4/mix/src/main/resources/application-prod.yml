@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    # 指定连接prod数据库
+    url: jdbc:mysql://localhost:3306/prod?serverTimezone=UTC
+    username: root
+    password: 32147
+crazyit:
+  list:
+    - title: a
+      description: b
+    - title: 疯狂Java讲义
+      description: 北京大学信息科学学院的Java推荐教材
+  map:
+    prod:
+      title: 产品级
+      description: 产品级

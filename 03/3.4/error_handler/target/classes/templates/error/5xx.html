@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>服务器内部错误</title>
+	<!-- 引用WarJar中的静态资源-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+	<div class="alert alert-danger">
+		<div>status：<span th:text="${status}">错误</span></div>
+		<div>error：<span th:text="${error}">错误</span></div>
+		<div>exception：<span th:text="${exception}">错误</span></div>
+		<div>message：<span th:text="${message}">错误</span></div>
+		<div>path：<span th:text="${path}">错误</span></div>
+		<div>trace：<span th:text="${trace}">错误</span></div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+org/crazyit/firstboot/service/BookService.java
+ org.crazyit.firstboot.service.BookService
+org/crazyit/firstboot/controller/BookController.java
+ org.crazyit.firstboot.controller.BookController
+org/crazyit/firstboot/service/impl/BookServiceImpl.java
+ org.crazyit.firstboot.service.impl.BookServiceImpl
+org/crazyit/firstboot/FirstbootApplication.java
+ org.crazyit.firstboot.FirstbootApplication
+org/crazyit/firstboot/domain/Book.java
+ org.crazyit.firstboot.domain.Book
+org/crazyit/firstboot/dao/BookDao.java
+ org.crazyit.firstboot.dao.BookDao

@@ -1,0 +1,8 @@
+# 定义图片Banner的大小
+spring:
+  banner:
+    image:
+      height: 20
+      width: 60
+      # 设置字符串的色深
+      bitdepth: 4

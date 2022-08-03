@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: org.crazyit.firstboot.controller.MockEnvTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 24.608 s <<< FAILURE! - in org.crazyit.firstboot.controller.MockEnvTest
+testDelete{Integer}[1]  Time elapsed: 0.076 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.dao.EmptyResultDataAccessException: No class org.crazyit.firstboot.domain.Book entity with id 7 exists!
+	at org.crazyit.firstboot.controller.MockEnvTest.testDelete(MockEnvTest.java:77)
+Caused by: org.springframework.dao.EmptyResultDataAccessException: No class org.crazyit.firstboot.domain.Book entity with id 7 exists!
+	at org.crazyit.firstboot.controller.MockEnvTest.testDelete(MockEnvTest.java:77)
+
+testDelete{Integer}[2]  Time elapsed: 0.019 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.dao.EmptyResultDataAccessException: No class org.crazyit.firstboot.domain.Book entity with id 8 exists!
+	at org.crazyit.firstboot.controller.MockEnvTest.testDelete(MockEnvTest.java:77)
+Caused by: org.springframework.dao.EmptyResultDataAccessException: No class org.crazyit.firstboot.domain.Book entity with id 8 exists!
+	at org.crazyit.firstboot.controller.MockEnvTest.testDelete(MockEnvTest.java:77)
+

@@ -1,0 +1,44 @@
+{
+  "groups": [
+    {
+      "name": "org.crazyit",
+      "type": "org.crazyit.app.config.CrazyitProperties",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    },
+    {
+      "name": "org.crazyit.item",
+      "type": "org.crazyit.app.config.CrazyitProperties$Item",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties",
+      "sourceMethod": "getItem()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "org.crazyit.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "org.crazyit.item.brand",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties$Item"
+    },
+    {
+      "name": "org.crazyit.item.comments",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties$Item"
+    },
+    {
+      "name": "org.crazyit.name",
+      "type": "java.lang.String",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    },
+    {
+      "name": "org.crazyit.remote-address",
+      "type": "java.net.InetAddress",
+      "sourceType": "org.crazyit.app.config.CrazyitProperties"
+    }
+  ],
+  "hints": []
+}

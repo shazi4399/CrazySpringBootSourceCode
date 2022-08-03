@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.13.0.xsd">
+	<!-- 配置数据库连接信息 -->
+	<jdbc>
+		<driver>com.mysql.cj.jdbc.Driver</driver>
+		<url>jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC</url>
+		<user>root</user>
+		<password>32147</password>
+	</jdbc>
+	<generator>
+		<!-- 指定代码生成器，jOOQ支持如下两个代码生成器：
+			 - org.jooq.codegen.JavaGenerator（默认）
+			 - org.jooq.codegen.ScalaGenerator -->
+		<name>org.jooq.codegen.JavaGenerator</name>
+		<database>
+			<!-- 指定数据库类型
+			此处的格式应该是org.jooq.meta.[database].[database]Database -->
+			<name>org.jooq.meta.mysql.MySQLDatabase</name>
+			<!-- 指定数据库Schema名 -->
+			<inputSchema>springboot</inputSchema>
+			<!-- 指定要为哪些数据库单元生成Java代码，多个表达式之间用竖线隔开 -->
+			<includes>.*</includes>
+			<!-- 指定要排除哪些数据库单元，多个表达式之间用竖线隔开 -->
+			<excludes></excludes>
+		</database>
+		<target>
+			<!-- 指定将生成的Java代码放在哪个包下 -->
+			<packageName>test.generated</packageName>
+			<!-- 指定将生成的Java代码放在哪个目录下 -->
+			<directory>src/main/java</directory>
+		</target>
+	</generator>
+</configuration>

@@ -1,0 +1,5 @@
+app:
+  java:
+    version: "${sourceCompatibility}"
+  name: "${rootProject.name}"
+  version: "${version}"

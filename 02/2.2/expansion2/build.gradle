@@ -1,0 +1,26 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+// 定义项目的基本信息
+group = 'org.crazyit'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+// 定义Gradle资源库
+repositories {
+    // 优先使用Maven本地资源库
+    mavenLocal()
+    mavenCentral()
+}
+dependencies {
+    // Spring Web依赖
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+test {
+    useJUnitPlatform()
+}
+// 配置Java插件的processResources Task
+processResources {
+    expand(project.properties)
+}

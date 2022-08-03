@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> 基于WebSocket的多人聊天 </title>
+	<script type="text/javascript">
+		// 定义Web Socket对象
+		var webSocket = null;
+		let sendMsg = function()
+		{
+			if (webSocket == null || webSocket.readyState != 1)
+			{
+				document.getElementById('show').innerHTML
+					+= "还未连接服务器，请先连接WebSocket服务器<br>";
+				return;
+			}
+			let inputElement = document.getElementById('msg');
+			// 发送消息
+			webSocket.send(inputElement.value);
+			// 清空单行文本框
+			inputElement.value = "";
+		}
+		let connect = function()
+		{
+			let name = document.getElementById('name').value.trim();
+			if (name == null || name == "")
+			{
+				document.getElementById('show').innerHTML
+					+= "用户名不能为空<br>";
+				return;
+			}
+			if (webSocket && webSocket.readyState == 1)
+			{
+				webSocket.close();
+			}
+			webSocket = new WebSocket("ws://127.0.0.1:8080/websocket/" + name);
+			webSocket.onopen = function()
+			{
+				document.getElementById('show').innerHTML
+					+= "恭喜您，连接服务器成功！<br>";
+				document.getElementById('name').value = "";
+				// 为onmessage事件绑定监听器，接收消息
+				webSocket.onmessage= function(event)
+				{
+					// 接收、并显示消息
+					document.getElementById('show').innerHTML
+						+= event.data + "<br>";
+				}
+			};
+		}
+	</script>
+</head>
+<body>
+<input type="text" size="20" id="name" name="name"/>
+<input type="button" value="连接" onclick="connect();"/>
+<div style="width:600px;height:240px;
+	overflow-y:auto;border:1px solid #333;" id="show"></div>
+<input type="text" size="80" id="msg" name="msg"/>
+<input type="button" value="发送" onclick="sendMsg();"/>
+</body>
+</html>

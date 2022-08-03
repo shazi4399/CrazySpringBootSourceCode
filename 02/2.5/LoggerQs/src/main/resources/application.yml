@@ -1,0 +1,8 @@
+logging:
+  level:
+    # 将org.crazyit.app包及其子包下所有日志级别设为TRACE
+    org.crazyit.app: trace
+  pattern:
+    console: "%clr(${LOG_LEVEL_PATTERN:%5p}) %clr(${PID:- }){magenta}
+    %clr(---){blue} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan}
+    %clr(:){faint} %clr(%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx})"

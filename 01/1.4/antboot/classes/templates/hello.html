@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>第一个Spring Boot应用</title>
+	<!-- 引用WarJar中的静态资源-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+</head>
+<body>
+<div class="container">
+	<!-- 使用th:text将表达式的值绑定到标准HTML元素 -->
+	<div class="alert alert-primary" th:text="${tip}"></div>
+	<h2>添加图书</h2>
+	<form method="post" th:action="@{/addBook}">
+		<div class="form-group row">
+			<label for="title" class="col-sm-3 col-form-label">图书名：</label>
+			<div class="col-sm-9">
+				<input type="text" id="title" name="title"
+					   class="form-control" placeholder="输入图书名">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="author" class="col-sm-3 col-form-label">作者：</label>
+			<div class="col-sm-9">
+				<input type="text" id="author" name="author"
+					   class="form-control" placeholder="输入作者">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="price" class="col-sm-3 col-form-label">价格：</label>
+			<div class="col-sm-9">
+				<input type="number" step="0.1" id="price" name="price"
+					   class="form-control" placeholder="输入价格">
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-sm-6 text-right">
+				<button type="submit" class="btn btn-primary">添加</button>
+			</div>
+			<div class="col-sm-6">
+				<button type="reset" class="btn btn-danger">重设</button>
+			</div>
+		</div>
+	</form>
+</div>
+</body>
+</html>

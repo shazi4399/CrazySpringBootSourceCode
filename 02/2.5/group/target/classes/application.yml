@@ -1,0 +1,7 @@
+logging:
+  group:
+    # 将org.crazyit.app和org.fkjava.app两个包定义成fkapp组
+    fkapp: org.crazyit.app, org.fkjava.app
+  level:
+    # 将fkapp组对应的包及其子包的所有日志级别设为TRACE
+    fkapp: trace

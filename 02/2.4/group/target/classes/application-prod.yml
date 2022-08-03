@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    # 指定连接prod数据库
+    url: jdbc:mysql://localhost:3306/prod?serverTimezone=UTC
+    username: root
+    password: 32147

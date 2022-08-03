@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- 指定继承spring-boot-starter-parent POM文件 -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.2</version>
+		<relativePath/>
+	</parent>
+
+	<groupId>org.crazyit</groupId>
+	<artifactId>jooq</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>jooq</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>11</java.version>
+	</properties>
+
+	<dependencies>
+		<!-- 添加spring-boot-starter-jooq -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jooq</artifactId>
+		</dependency>
+		<!-- MySQL驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- 添加jOOQ代码生成器的依赖库 -->
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq-codegen-maven</artifactId>
+			<version>3.14.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jooq</groupId>
+				<artifactId>jooq-codegen-maven</artifactId>
+				<executions>
+					<execution>
+						<!-- jOOQ代码生成器在generate-sources阶段执行，
+						 该阶段位于编译之前 -->
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<jdbc>
+						<driver>com.mysql.cj.jdbc.Driver</driver>
+						<url>jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC</url>
+						<user>root</user>
+						<password>32147</password>
+					</jdbc>
+					<generator>
+						<!-- 指定jOOQ的代码生成器类：它支持如下两个实现类
+						org.jooq.codegen.JavaGenerator
+						org.jooq.codegen.ScalaGenerator
+						-->
+						<name>org.jooq.codegen.JavaGenerator</name>
+						<database>
+							<!-- 指定数据库类型，其格式为：
+								 org.jooq.meta.[database].[database]Database -->
+							<name>org.jooq.meta.mysql.MySQLDatabase</name>
+							<!-- 指定数据库的Schema -->
+							<inputSchema>springboot</inputSchema>
+							<!-- 指定要为哪些数据库单元生成Java类 -->
+							<includes>.*</includes>
+							<!-- 指定排除哪些数据库单元 -->
+							<excludes></excludes>
+						</database>
+						<target>
+							<!-- 指定生成的源文件放在哪个包下 -->
+							<packageName>org.crazyit.generated</packageName>
+							<!-- 指定将生成的Java源文件放在哪个目录下 -->
+							<directory>src/main/java</directory>
+						</target>
+					</generator>
+				</configuration>
+			</plugin>
+			<!-- 定义Spring Boot Maven插件，可用于运行Spring Boot应用 -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="hibernate" basedir="." default="">
+	<property name="src" value="src/main/java"/>
+	<property name="src_res" value="src/main/resources"/>
+	<property name="test" value="src/test/java"/>
+	<property name="test_res" value="src/test/resources"/>
+	<property name="dest" value="classes"/>
+
+	<path id="classpath">
+		<!-- 引用项目的JAR包 -->
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>
+		<pathelement path="${dest}"/>
+	</path>
+
+	<target name="compile" description="Compile all source code">
+		<delete dir="${dest}"/>
+		<mkdir dir="${dest}"/>
+		<copy todir="${dest}">
+			<fileset dir="${src_res}">
+				<exclude name="**/*.java"/>
+			</fileset>
+			<fileset dir="${test_res}">
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+		<!-- 编译所有Java源文件 -->
+		<javac destdir="${dest}" debug="true" includeantruntime="yes"
+			deprecation="false" optimize="false" failonerror="true" encoding="utf-8">
+			<src path="${src}"/>
+			<src path="${test}"/>
+			<classpath refid="classpath"/>
+			<compilerarg value="-Xlint:deprecation"/>
+		</javac>
+	</target>
+	<target name="run" description="Run the main class" depends="compile">
+		<!-- 运行Spring Boot的主类 -->
+		<java classname="org.crazyit.firstboot.FirstbootApplication" 
+			fork="true" failonerror="true">
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+</project>

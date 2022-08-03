@@ -1,0 +1,22 @@
+spring:
+  # 指定活动Profile
+  profiles:
+    active: postgre
+---
+spring:
+  config:
+    activate.on-profile: mysql
+  # 指定MySQL的连接信息
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/springboot
+    username: root
+    password: 32147
+---
+spring:
+  config:
+    activate.on-profile: postgre
+  # 指定PostgreSQL的连接信息
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/springboot
+    username: postgres
+    password: 32147

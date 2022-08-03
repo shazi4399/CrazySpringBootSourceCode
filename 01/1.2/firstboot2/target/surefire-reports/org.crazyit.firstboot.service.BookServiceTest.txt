@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: org.crazyit.firstboot.service.BookServiceTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 1.832 s <<< FAILURE! - in org.crazyit.firstboot.service.BookServiceTest
+testDeleteBook{Integer}[1]  Time elapsed: 0.001 s  <<< ERROR!
+org.springframework.dao.EmptyResultDataAccessException: No class org.crazyit.firstboot.domain.Book entity with id 9 exists!
+	at org.crazyit.firstboot.service.BookServiceTest.testDeleteBook(BookServiceTest.java:50)
+
+testDeleteBook{Integer}[2]  Time elapsed: 0.001 s  <<< ERROR!
+org.springframework.dao.EmptyResultDataAccessException: No class org.crazyit.firstboot.domain.Book entity with id 10 exists!
+	at org.crazyit.firstboot.service.BookServiceTest.testDeleteBook(BookServiceTest.java:50)
+

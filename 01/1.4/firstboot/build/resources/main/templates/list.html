@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>所有图书</title>
+	<!-- 引用WarJar中的静态资源-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+</head>
+<body>
+<div class="container">
+	<h2>全部图书</h2>
+	<table class="table table-hover">
+		<tr>
+			<th>书名</th>
+			<th>作者</th>
+			<th>价格</th>
+			<th>操作</th>
+		</tr>
+		<tr th:each="book : ${books}">
+			<td th:text="${book.title}">书名</td>
+			<td th:text="${book.author}">作者</td>
+			<td th:text="${book.price}">0</td>
+			<td><a th:href="@{/deleteBook?id=} + ${book.id}">删除</a></td>
+		</tr>
+	</table>
+	<div class="text-right"><a class="btn btn-primary"
+			th:href="@{/}">添加图书</a></div>
+</div>
+</body>
+</html>

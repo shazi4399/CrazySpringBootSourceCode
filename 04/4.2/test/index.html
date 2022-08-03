@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="resources/bootstrap-4.3.1/css/bootstrap.min.css">
+	<script src="resources/jquery-3.4.1.min.js">
+	</script>
+	<script src="resources/bootstrap-4.3.1/js/bootstrap.min.js">
+	</script>
+	<title> 查看图书 </title>
+</head>
+<body>
+<div class="container">
+	<a id="bn" href="#" class="btn btn-primary">查看作者的图书</a>
+	<div class="toast" role="alert" id="resultToast" data-delay="900000">
+		<div class="toast-header">
+			<h5>作者的图书</h5>
+			<button type="button" class="ml-2 mb-1 close" 
+				data-dismiss="toast" aria-label="关闭">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="toast-body" id="content">
+		</div>
+	</div>
+<div>
+<script type="text/javascript">
+	$('#bn').click(function(){
+		$.get("http://192.168.1.88:8080/book", null, function(data){
+			// 清空content元素里的内容
+			$("#content").html("");
+			$("#content").append("<ul class='list-group'>");
+			// 遍历data数组，为每个数组元素添加一个li元素
+			for (b in data)
+			{
+				$("#content").append("<li class='list-group-item'>"
+					+ data[b] + "</li>");
+			}
+			$("#content").append("</ul>");
+			$('#resultToast').toast('show');
+		})
+	});
+</script>
+</body>
+</html>

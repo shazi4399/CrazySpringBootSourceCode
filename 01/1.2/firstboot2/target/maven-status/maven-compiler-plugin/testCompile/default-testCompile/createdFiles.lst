@@ -1,0 +1,4 @@
+org\crazyit\firstboot\controller\MockEnvTest.class
+org\crazyit\firstboot\service\MockTest.class
+org\crazyit\firstboot\controller\RandomPortTest.class
+org\crazyit\firstboot\service\BookServiceTest.class

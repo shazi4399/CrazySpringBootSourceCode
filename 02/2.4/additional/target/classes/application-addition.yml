@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    # 指定连接addition数据库
+    url: jdbc:mysql://localhost:3306/addition?serverTimezone=UTC

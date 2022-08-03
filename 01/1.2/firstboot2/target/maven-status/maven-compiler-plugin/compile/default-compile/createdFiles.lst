@@ -1,0 +1,6 @@
+org\crazyit\firstboot\controller\BookController.class
+org\crazyit\firstboot\FirstbootApplication.class
+org\crazyit\firstboot\dao\BookDao.class
+org\crazyit\firstboot\domain\Book.class
+org\crazyit\firstboot\service\impl\BookServiceImpl.class
+org\crazyit\firstboot\service\BookService.class

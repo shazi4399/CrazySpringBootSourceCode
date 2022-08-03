@@ -1,0 +1,5 @@
+app:
+  java:
+    version: "11"
+  name: "expansion2"
+  version: "0.0.1-SNAPSHOT"

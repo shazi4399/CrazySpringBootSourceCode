@@ -1,0 +1,9 @@
+# 定义事件监听器
+org.springframework.context.ApplicationListener=\
+org.crazyit.app.MyListener
+# 定义初始化器
+org.springframework.context.ApplicationContextInitializer=\
+org.crazyit.app.MyInitializer
+# 定义配置环境后处理器
+org.springframework.boot.env.EnvironmentPostProcessor=\
+org.crazyit.app.FkEnvironmentPostProcessor

@@ -1,0 +1,4 @@
+fkjava:
+  server:
+    name: "疯狂软件服务器"
+    port: 9000

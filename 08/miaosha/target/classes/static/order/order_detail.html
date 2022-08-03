@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)"/>
+	<meta charset="UTF-8">
+	<title>订单详情</title>
+	<!-- jQuery -->
+	<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+	<!-- BootStrap -->
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"/>
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Layer -->
+	<script type="text/javascript" src="/layer/layer.js"></script>
+	<!-- 自定义的common.js -->
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script>
+		// 页面加载完成后自动执行
+		$(function () {
+			// 获取订单ID
+			let orderId = g_getQueryString("orderId");
+			$.get("/order/detail", {
+				orderId: orderId,
+			}, function (data) {
+				if (data.code == 0) {
+					// 根据服务器响应数据动态更新页面
+					render(data.data);
+				} else {
+					layer.msg(data.msg);
+				}
+			});
+		});
+		// 动态更新页面的脚本
+		function render(detail) {
+			// 获取秒杀订单对应的商品
+			let miaoshaItem = detail.miaoshaItem;
+			// 获取订单信息
+			let order = detail.order;
+			// 获取秒杀订单的用户
+			let user = detail.user;
+			// 动态更新页面
+			$("#itemName").text(miaoshaItem.itemName);
+			$("#title").text(miaoshaItem.title);
+			$("#itemDetail").text(miaoshaItem.itemDetail);
+			$("#itemImg").attr("src", "/imgs/" + miaoshaItem.itemImg);
+			$("#orderPrice").text(order.orderPrice);
+			$("#createDate").text(new Date(order.createDate).format("yyyy-MM-dd hh:mm:ss"));
+			$("#user").text(user.nickname + " " + user.id);
+			let status = "";
+			if (order.status == 0) {
+				status = "未支付";
+			} else if (order.status == 1) {
+				status = "待发货";
+			}
+			$("#orderStatus").text(status);
+		}
+	</script>
+</head>
+<body>
+<div class="container">
+	<img src="/imgs/logo.png"
+		 class="rounded mx-auto d-block" alt="logo"><h4>秒杀订单详情</h4>
+	<div class="row">
+		<div class="col-lg-3"><img id="itemImg" width="240" height="340"></div>
+		<div class="col-lg-9 p-3">
+			<div class="row py-1 pl-5">
+				<div class="col-lg"><h3 id="itemName"></h3></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg font-weight-bold text-danger" id="title"></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg">订单价格:<span class="col-lg" id="orderPrice"></span></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg">下单时间:<span class="col-lg"
+											   id="createDate"></span></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg">收货人:<span id="user" class="col-lg"></span></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg">收货地址:<span class="col-lg">广东 广州市天河区</span></div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg">订单状态:<span id="orderStatus" class="col-lg"></span>
+				</div>
+			</div>
+			<div class="row py-1 pl-5">
+				<div class="col-lg" id="itemDetail"></div>
+			</div>
+			<button class="btn btn-primary btn-block" type="button" id="payButton">立即支付</button>
+		</div>
+	</div>
+</div>
+</body>
+</html>

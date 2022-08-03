@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 导入Logback默认的日志配置 -->
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<!-- 定义日志文件 -->
+	<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}"/>
+	<!-- 导入输入到文件的日志配置 -->
+	<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+	<!-- 指定将日志输出到文件 -->
+	<root level="INFO">
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>

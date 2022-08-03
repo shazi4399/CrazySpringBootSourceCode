@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>添加成功</title>
+	<!-- 引用WarJar中的静态资源-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+	<div class="alert alert-primary"><span th:text="${tip}">添加成功</span><br>
+		书名: <span th:text="${book.name}">疯狂Java讲义</span><br>
+		封面：<img th:src="@{'/uploads/' + ${book.targetName}}">
+	</div>
+</div>
+</body>
+</html>

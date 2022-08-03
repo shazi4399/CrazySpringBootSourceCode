@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 以下配置仅当活动Profile为default、dev和test时有效 -->
+	<springProfile name="default | dev | test">
+		<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+		<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+		<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+		<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+		<root level="DEBUG">
+			<appender-ref ref="CONSOLE" />
+			<appender-ref ref="FILE" />
+		</root>
+		<!-- 指定org.crazyit.app日志的级别是DEBUG -->
+		<logger name="org.crazyit.app" level="DEBUG"/>
+	</springProfile>
+	<!-- 以下配置仅当活动Profile为prod时有效 -->
+	<springProfile name="prod">
+		<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+		<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+		<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+		<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+		<root level="INFO">
+			<appender-ref ref="CONSOLE" />
+			<appender-ref ref="FILE" />
+		</root>
+		<!-- 指定org.crazyit.app日志的级别是INFO -->
+		<logger name="org.crazyit.app" level="INFO"/>
+	</springProfile>
+</configuration>

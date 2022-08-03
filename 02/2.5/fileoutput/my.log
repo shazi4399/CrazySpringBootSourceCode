@@ -1,0 +1,19 @@
+2021-01-21 23:44:47.366  INFO 34980 --- [main] org.crazyit.app.App                      : Starting App using Java 11.0.9 on yeeku-PC with PID 34980 (G:\publish\codes\02\2.6\fileoutput\target\classes started by yeeku in G:\publish\codes\02\2.6\fileoutput)
+2021-01-21 23:44:47.369 DEBUG 34980 --- [main] org.crazyit.app.App                      : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-21 23:44:47.370  INFO 34980 --- [main] org.crazyit.app.App                      : No active profile set, falling back to default profiles: default
+2021-01-21 23:44:48.605  INFO 34980 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-21 23:44:48.618  INFO 34980 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-21 23:44:48.618  INFO 34980 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-21 23:44:48.701  INFO 34980 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-21 23:44:48.702  INFO 34980 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1231 ms
+2021-01-21 23:44:48.928  INFO 34980 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-21 23:44:49.108  INFO 34980 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-21 23:44:49.126  INFO 34980 --- [main] org.crazyit.app.App                      : Started App in 2.494 seconds (JVM running for 3.874)
+2021-01-21 23:44:59.289  INFO 34980 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-21 23:44:59.290  INFO 34980 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-21 23:44:59.291  INFO 34980 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-01-21 23:44:59.312 TRACE 34980 --- [http-nio-8080-exec-1] o.c.app.controller.HelloController       : -------TRACE级别的日志-------
+2021-01-21 23:44:59.312 DEBUG 34980 --- [http-nio-8080-exec-1] o.c.app.controller.HelloController       : -------DEBUG级别的日志-------
+2021-01-21 23:44:59.313  INFO 34980 --- [http-nio-8080-exec-1] o.c.app.controller.HelloController       : -------INFO级别的日志-------
+2021-01-21 23:44:59.313  WARN 34980 --- [http-nio-8080-exec-1] o.c.app.controller.HelloController       : -------WARN级别的日志-------
+2021-01-21 23:44:59.314 ERROR 34980 --- [http-nio-8080-exec-1] o.c.app.controller.HelloController       : -------ERROR级别的日志-------
